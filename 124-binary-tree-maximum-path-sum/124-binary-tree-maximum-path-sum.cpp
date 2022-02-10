@@ -25,8 +25,8 @@ public:
         int lh = maxPath(root->left, maxi);
         int rh = maxPath(root->right, maxi);
         
-        if(lh<0) lh = 0;
-        if(rh<0) rh = 0;
+        if(lh<0) lh = 0;   //taking -ve path will never give max path sum so ignore all
+        if(rh<0) rh = 0;   // -ve paths coming from left and right and set them to 0
         
         maxi = max(root->val+lh+rh, maxi);
         return root->val+max(lh, rh);
