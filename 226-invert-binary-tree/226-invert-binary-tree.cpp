@@ -15,11 +15,37 @@ public:
         if(root==NULL){
             return root;
         }
-        else{
-            invertTree(root->left);
-            invertTree(root->right);
-            swap(root->left,root->right);
-            return root;
+        
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            TreeNode* curr = q.front();
+            q.pop();
+            if(curr->left!=NULL) q.push(curr->left);
+            if(curr->right!=NULL) q.push(curr->right);
+            
+            TreeNode* tmp = curr->left;  //to reverse
+            curr->left = curr->right;
+            curr->right = tmp;
         }
+        return root;
     }
 };
+
+
+
+//     Recursive 
+//  class Solution {
+//  public:
+//      TreeNode* invertTree(TreeNode* root) {
+ //       if(root==NULL){
+//           return root;
+ //        }
+//         else{
+ //          invertTree(root->left);
+ //          invertTree(root->right);
+  //         swap(root->left,root->right);
+  //          return root;
+  //             }
+   //          }
+//}; 
