@@ -1,32 +1,19 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int n = nums.size();
-        sort(nums.begin(), nums.end());
+        int candidate = 0, count = 0;
         
-        return nums[n/2];
-    }
-};
-
-
-
-
-/*   Using Hashmap
-
-int majorityElement(vector<int>& nums) {
-        int n = nums.size();
-        int ans;
-        unordered_map<int, int> m;
-        
-        for(int i=0;i<n;i++){
-            m[nums[i]]++;
-        }
-        
-        for(int i=0;i<n;i++){
-            if(m[nums[i]]>n/2){
-                ans = nums[i];
+        for(int i=0;i<nums.size();i++){
+            if(count==0){
+                candidate = nums[i];
+            }
+            if(nums[i]==candidate){
+               count++;
+            }
+            else{
+                count--;
             }
         }
-        return ans;
+        return candidate;
     }
-*/
+};
