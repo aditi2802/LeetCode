@@ -31,9 +31,13 @@ int main() {
 
 string reverseWord(string str){
     
-  string ans = "";
-  for(int i=str.size()-1;i>=0;i--){
-      ans += str[i];
+  //Your code here
+  int i = 0;
+  int j = str.size()-1;
+  while(i<j){
+      swap(str[i], str[j]);
+      i++;
+      j--;
   }
-  return ans;
+  return str;
 }
