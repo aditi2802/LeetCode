@@ -15,11 +15,11 @@ public:
             }
             else if(curr<target){
                 i++;
-                continue;
+                
             }
             else{
                 j--;
-                continue;
+                
             }
         }
         return v;
