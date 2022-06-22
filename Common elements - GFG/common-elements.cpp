@@ -10,22 +10,24 @@ class Solution
        vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
         {
             //code here.
-            vector<int> ans;
-            unordered_map<int,int> m1;
-            unordered_map<int,int> m2;
-            unordered_map<int,int> m3;
-            
-            for(int i=0;i<n1;i++) m1[A[i]]++;  
-            for(int i=0;i<n2;i++) m2[B[i]]++;
-            for(int i=0;i<n3;i++) m3[C[i]]++;
-            
-            for(int i=0;i<n1;i++){
-                if(m1[A[i]] && m2[A[i]] && m3[A[i]]){
-                    ans.push_back(A[i]);
-                    m1[A[i]] = 0; //to stop duplicates
+            vector<int> v;
+            int i = 0, j = 0, k = 0;
+            int ele = INT_MIN;  //to stop duplicate 
+            while(i<n1 && j<n2 && k<n3){
+                if(A[i]==B[j] && B[j]==C[k] && A[i]!=ele){
+                    v.push_back(A[i]);
+                    ele = A[i];
+                    i++;
+                    j++;
+                    k++;
                 }
+                else if(A[i]<B[j]) i++;
+                else if(B[j]<C[k]) j++;
+                else k++;
+                
+                
             }
-            return ans;
+            return v;
         }
 
 };
