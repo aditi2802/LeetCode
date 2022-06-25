@@ -1,23 +1,26 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        if(nums.size()==0 || nums.size()==1) return nums.size();
-        sort(nums.begin(), nums.end());
-        int count = 1;
-        int maxi = 1;
+        unordered_set<int> s;
+        for(int i=0;i<nums.size();i++){
+            s.insert(nums[i]);         //to remove duplicates
+        }
         
-        for(int i=0;i<nums.size()-1;i++){
-            if(nums[i+1]==nums[i]+1){
-                count++;
-                maxi = max(count, maxi);
-            }
-            else if(nums[i+1]==nums[i]){
-                count = count;
-            }
+        int longLen = 0; //to keep track of longest subseq
+        for(int i=0;i<nums.size();i++){
+            if(s.find(nums[i]-1)!=s.end()){ //if smaller element is present then dontd 
+                continue;                   //do anything bcz its not starting el of
+            }                               //subseq
             else{
-                count = 1;
+                int currLen = 0;
+                int curr = nums[i];
+                while(s.find(curr)!=s.end()){
+                    currLen++;
+                    curr++;
+                }
+                longLen = max(longLen, currLen);
             }
         }
-        return maxi;
+        return longLen;
     }
 };
