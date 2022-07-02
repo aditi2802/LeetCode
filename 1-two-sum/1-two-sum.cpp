@@ -3,19 +3,24 @@ public:
     vector<int> twoSum(vector<int>& nums, int target) 
      {
         int n=nums.size();
-        vector<int> ans;
-        for(int i=0;i<n-1;i++)
+        
+        vector<pair<int,int>>v;
+        for(int i=0;i<n;i++)
         {
-            for(int j=i+1;j<n;j++)
-            {
-                if(nums[i]+nums[j]==target)
-                {
-                    ans.push_back(i);
-                    ans.push_back(j);
-                    
-                }
-            }
+            v.push_back({nums[i],i});
         }
-        return ans;
+        
+     
+        sort(v.begin(),v.end());
+        int l=0,r=n-1;
+        while(l<r)
+        {
+        int sum=v[l].first+v[r].first;
+            if (sum==target) return{v[l].second,v[r].second};
+            else if(sum<target)l++;
+            else if (sum>target)r--;
         }
+       return {-1,-1} ;
+    
+    }
 };
