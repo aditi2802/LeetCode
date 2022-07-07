@@ -12,17 +12,14 @@ class Solution{
     {
         //Your Code Here
         sort(A, A+n);
-        
-        for(int i=0;i<n-2;i++){
-            int start = i+1;
-            int end = n-1;
+        for(int i=0;i<n;i++){
+            int s = i+1;
+            int e = n-1;
             
-            while(start<end){
-                if(A[i]+A[start]+A[end]==X){
-                    return true;
-                }
-                else if(A[i]+A[start]+A[end]>X) end--;
-                else start++;
+            while(s<e){
+                if(A[i]+A[s]+A[e]==X) return true;
+                else if(A[i]+A[s]+A[e]<X) s++;
+                else e--;
             }
         }
         return false;
