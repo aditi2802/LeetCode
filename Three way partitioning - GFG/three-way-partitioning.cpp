@@ -15,17 +15,22 @@ public:
     void threeWayPartition(vector<int>& array,int a, int b)
     {
         // code here 
+        int i = 0;
         int l = 0;
         int r = array.size()-1;
-        for(int i=0;i<=r;i++){
+        
+        while(i<=r){
             if(array[i]<a){
                 swap(array[i], array[l]);
+                i++;
                 l++;
             }
             else if(array[i]>b){
                 swap(array[i], array[r]);
                 r--;
-                i--;
+            }
+            else{
+                i++;
             }
         }
     }
