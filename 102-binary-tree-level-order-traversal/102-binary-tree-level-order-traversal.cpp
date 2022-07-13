@@ -30,6 +30,6 @@ public:
             }
             ans.push_back(innerArray); 
         }
-        return ans; 
+        return ans;
     }
 };
