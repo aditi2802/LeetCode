@@ -9,9 +9,10 @@ public:
         //pick element
         if(arr[index]<=target){
             ds.push_back(arr[index]);
-            helper(index, target-arr[index], ds, ans, arr);
+            target -= arr[index];
+            helper(index, target, ds, ans, arr);
             ds.pop_back();
-            // target += arr[index];
+            target += arr[index];
         }
         
         //not pick
