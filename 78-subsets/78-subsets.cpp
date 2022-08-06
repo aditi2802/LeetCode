@@ -1,22 +1,25 @@
-class Solution {                          // https://www.youtube.com/watch?v=6BPurabdAl4
+class Solution {
 public:
-    void help(int i, vector<int>& nums, vector<vector<int>>& ans, vector<int>& temp){
-       if(i==nums.size()){
-          ans.push_back(temp);
-       }
+    void helper(int i, vector<int>&ds, vector<vector<int>>&ans, vector<int>&nums){
+        if(i==nums.size()){
+            ans.push_back(ds);
+            return;
+        }
         else{
-            temp.push_back(nums[i]);   //either consider ith element
-            help(i+1, nums, ans, temp);
+            //pick
+            ds.push_back(nums[i]);
+            helper(i+1, ds, ans, nums);
+            ds.pop_back();
             
-            temp.pop_back();           //or ignore it
-            help(i+1, nums, ans, temp);
+            //not pick
+            helper(i+1, ds, ans, nums);
         }
     }
     
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> ans;
-        vector<int> temp;
-        help(0, nums, ans, temp);
+        vector<int> ds;
+        helper(0, ds, ans, nums);
         return ans;
     }
 };
