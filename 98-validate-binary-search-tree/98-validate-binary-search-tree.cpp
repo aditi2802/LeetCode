@@ -11,18 +11,15 @@
  */
 class Solution {
 public:
-    bool isValidBST(TreeNode* root) {
-        inorder(root);
-        for(int i=1;i<v.size();i++){
-            if(v[i]==v[i-1]) return false;
-        }
-        return is_sorted(v.begin(), v.end());
+    bool helper(TreeNode* root, long mini, long maxi){
+        if(!root) return true;
+        
+        if(root->val>=maxi || root->val<=mini) return false;
+        
+        return helper(root->left, mini, root->val) && helper(root->right, root->val, maxi);
     }
-    vector<int> v;
-    void inorder(TreeNode* root){
-        if(root==NULL) return;
-        inorder(root->left);
-        v.push_back(root->val);
-        inorder(root->right);
+    
+    bool isValidBST(TreeNode* root) {
+        return helper(root, LONG_MIN, LONG_MAX);
     }
 };
