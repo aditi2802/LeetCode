@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 // C program to find n'th Node in linked list
 #include <stdio.h>
 #include <stdlib.h>
@@ -46,7 +46,8 @@ int main()
     cout<<getNthFromLast(head, k)<<endl;
     }
     return 0;
-}// } Driver Code Ends
+}
+// } Driver Code Ends
 
 
 /* struct Node {
@@ -62,17 +63,19 @@ int main()
 //Function to find the data of nth node from the end of a linked list.
 int getNthFromLast(Node *head, int n)
 {
-    int len = 0;
-    Node* temp = head;
-    while(temp!=NULL){
-        temp = temp->next;
-        len++;
-    }
-    if(len<n) return -1;
-    temp = head;
-    for(int i=1;i<(len-n+1);i++){
-        temp = temp->next;
-    }
-    return temp->data;
+       // Your code here
+       Node* curr = head;
+       int len = 0;
+       while(curr!=NULL){
+           curr = curr->next;
+           len++;
+       }
+       if(n>len) return -1;
+       
+       curr = head;
+       for(int i=1;i<(len-n+1);i++){
+           curr = curr->next;
+       }
+       return curr->data;
 }
 
