@@ -9,45 +9,38 @@ using namespace std;
 // User function template for C++
 
 class Solution{
-    public:
-    void solve(int i, int j, vector<vector<int>> &m, int n, string move, vector<string>&ans, vector<vector<int>>&vis){
+    vector<string> ans;
+    private:
+    void dfs(int i, int j, vector<vector<int>> &vis, string s, vector<vector<int>> &m, int n){
+        if(i<0 || j<0 || i>=n || j>=n) return; //boundary condition
+        if(m[i][j]==0 || vis[i][j]==1) return; //if pos is blocked or already vis
+        
         if(i==n-1 && j==n-1){
-            ans.push_back(move);
+            ans.push_back(s);
             return;
         }
         
-        //down
-        if(i+1<n && !vis[i+1][j] && m[i+1][j]==1){
-            vis[i][j] = 1;
-            solve(i+1, j ,m , n, move+"D", ans, vis);
-            vis[i][j] = 0; //backtrack
-        }
-         //left
-        if(j-1>=0 && !vis[i][j-1] && m[i][j-1]==1){
-            vis[i][j] = 1;
-            solve(i, j-1, m, n, move+"L", ans, vis);
-            vis[i][j] = 0;
-        }
-        //right
-        if(j+1<n && !vis[i][j+1] && m[i][j+1]==1){
-            vis[i][j] = 1;
-            solve(i, j+1, m, n, move+"R", ans, vis);
-            vis[i][j] = 0;
-        }
-        //up
-        if(i-1>=0 && !vis[i-1][j] && m[i-1][j]==1){
-            vis[i][j] = 1;
-            solve(i-1, j ,m , n, move+"U", ans, vis);
-            vis[i][j] = 0;
-        }
+        vis[i][j] = 1;
+        dfs(i-1, j, vis, s+"U", m, n);
+        dfs(i+1, j, vis, s+"D", m, n);
+        dfs(i, j-1, vis, s+"L", m, n);
+        dfs(i, j+1, vis, s+"R", m, n);
+        
+        vis[i][j] = 0; //while backtrack mark it unvis
     }
     
+    public:
     vector<string> findPath(vector<vector<int>> &m, int n) {
         // Your code goes here
-        vector<string> ans;
-        vector<vector<int>> vis(n, vector<int>(n,0));
+        string s = "";
+        vector<vector<int>> vis(n, vector<int>(n, 0));
         
-        if(m[0][0]==1) solve(0, 0, m, n, "", ans, vis);
+        if(m[0][0]==0) return ans;
+        if(m[n-1][n-1]==0) return ans;
+        
+        dfs(0, 0, vis, s, m, n);
+        sort(ans.begin(), ans.end());
+        
         return ans;
     }
 };
