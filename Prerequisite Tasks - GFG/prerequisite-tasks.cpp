@@ -22,11 +22,11 @@ public:
 	        if(indegree[i]==0) q.push(i);
 	    }
 	    
-	    vector<int> topo;
+	    int count = 0;
 	    while(!q.empty()){
 	        int node = q.front();
 	        q.pop();
-	        topo.push_back(node);
+	        count++;
 	        
 	        for(auto it : adj[node]){
 	            indegree[it]--;
@@ -34,7 +34,7 @@ public:
 	        }
 	    }
 	    
-	    if(topo.size()==V) return true;
+	    if(count==V) return true;
 	    
 	    return false;
 	}
