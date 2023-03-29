@@ -23,7 +23,8 @@ class Solution
         return f(arr, n-1);
     }*/
     
-    int f(int arr[], int i, vector<int>& dp){
+    //Memoization
+    /*int f(int arr[], int i, vector<int>& dp){
         if(i==0) return arr[0];
         if(i<0) return 0;
         if(dp[i]!=-1) return dp[i];
@@ -36,6 +37,19 @@ class Solution
     int FindMaxSum(int arr[], int n){
         vector<int> dp(n+1, -1);
         return f(arr, n-1, dp);
+    }*/
+    
+    //Tabulation without space optimisarion
+    int FindMaxSum(int arr[], int n){
+        vector<int> dp(n+1, -1);
+        dp[0] = arr[0];
+        for(int i=1;i<n+1;i++){
+            int pick = arr[i];
+            if(i>1) pick += dp[i-2];
+            int notpick = 0 + dp[i-1];
+            dp[i] = max(pick, notpick);
+        }
+        return dp[n-1];
     }
 };
 
