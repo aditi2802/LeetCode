@@ -40,7 +40,7 @@ class Solution
     }*/
     
     //Tabulation without space optimisarion
-    int FindMaxSum(int arr[], int n){
+    /*int FindMaxSum(int arr[], int n){
         vector<int> dp(n+1, -1);
         dp[0] = arr[0];
         for(int i=1;i<n+1;i++){
@@ -50,6 +50,22 @@ class Solution
             dp[i] = max(pick, notpick);
         }
         return dp[n-1];
+    }*/
+    
+    //Tabulation with space optimisation
+    int FindMaxSum(int arr[], int n){
+        int prev = arr[0];
+        int prev2 = 0;
+        for(int i=0;i<n;i++){
+            int pick = arr[i];
+            if(i>1) pick += prev2;
+            int notpick = 0 + prev;
+            int curri = max(pick, notpick);
+            prev2 = prev;
+            prev = curri;
+        }
+        return prev;
+        
     }
 };
 
