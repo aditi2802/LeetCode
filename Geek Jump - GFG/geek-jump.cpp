@@ -38,8 +38,8 @@ class Solution {
         return f(h, dp, n-1);
     }*/
     
-    //Tabulation
-    int minimumEnergy(vector<int>& h, int n){
+    //Tabulation without space optimisation
+    /*int minimumEnergy(vector<int>& h, int n){
         vector<int> dp(n+1, -1);
         dp[0] = 0;
         for(int i=1;i<n+1;i++){
@@ -49,6 +49,21 @@ class Solution {
             dp[i] = min(left, right);
         }
         return dp[n-1];
+    }*/
+    
+    //Tabulation with space optimisation
+    int minimumEnergy(vector<int>& h, int n){
+        int prev2 = 0;
+        int prev1 = 0;
+        for(int i=1;i<n;i++){
+            int left = prev1 + abs(h[i]-h[i-1]);
+            int right = INT_MAX;
+            if(i>1) right = prev2 + abs(h[i]-h[i-2]);
+            int curri = min(left, right);
+            prev2 = prev1;
+            prev1 = curri;
+        }
+        return prev1;
     }
 };
 
