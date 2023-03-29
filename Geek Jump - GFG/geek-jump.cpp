@@ -21,7 +21,7 @@ class Solution {
     }*/
     
     //Memoization
-    int f(vector<int>& h, vector<int>&dp, int i){
+    /*int f(vector<int>& h, vector<int>&dp, int i){
         if(i==0) return 0;
         if(dp[i]!=-1) return dp[i];
         int left = f(h, dp, i-1) + abs(h[i]-h[i-1]);
@@ -32,8 +32,23 @@ class Solution {
     }
     
     int minimumEnergy(vector<int>& h, int n){
+        
+    }
         vector<int> dp(n+1, -1);
         return f(h, dp, n-1);
+    }*/
+    
+    //Tabulation
+    int minimumEnergy(vector<int>& h, int n){
+        vector<int> dp(n+1, -1);
+        dp[0] = 0;
+        for(int i=1;i<n+1;i++){
+            int left = dp[i-1] + abs(h[i]-h[i-1]);
+            int right = INT_MAX;
+            if(i>1) right = dp[i-2] + abs(h[i]-h[i-2]);
+            dp[i] = min(left, right);
+        }
+        return dp[n-1];
     }
 };
 
