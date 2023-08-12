@@ -1,10 +1,10 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial template for C++
 
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 //User function template in C++
 
 class Solution{
@@ -15,11 +15,12 @@ class Solution{
         set<int> s;
         for(int i=0;i<n;i++) s.insert(a[i]);
         for(int i=0;i<m;i++) s.insert(b[i]);
+        
         return s.size();
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main() {
 	
@@ -43,4 +44,5 @@ int main() {
 	}
 	
 	return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
