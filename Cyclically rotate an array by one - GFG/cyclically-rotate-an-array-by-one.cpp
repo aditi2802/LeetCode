@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial Template for C++
 
 #include <bits/stdc++.h>
@@ -23,6 +23,7 @@ int main()
     }
         return 0;
 }
+
 // } Driver Code Ends
 
 
@@ -30,10 +31,8 @@ int main()
 
 void rotate(int arr[], int n)
 {
-    int i = 0;
-    int j = n-1;
-    while(i!=j){
-        swap(arr[i],arr[j]);
-        i++;
+    for(int i=0;i<n;i++){
+        swap(arr[i], arr[n-1]);
     }
+    
 }
