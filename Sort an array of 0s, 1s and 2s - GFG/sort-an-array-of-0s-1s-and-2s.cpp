@@ -10,17 +10,18 @@ class Solution
     public:
     void sort012(int a[], int n)
     {
-        // code here 
-        int zeros = 0, ones = 0, twos = 0;
+        // code here
+        int zeroes = 0;
+        int ones = 0;
+        int twos = 0;
         for(int i=0;i<n;i++){
-            if(a[i]==0) zeros++;
+            if(a[i]==0) zeroes++;
             if(a[i]==1) ones++;
             if(a[i]==2) twos++;
         }
-        
-        for(int i=0;i<zeros;i++) a[i] = 0;
-        for(int i=zeros;i<zeros+ones;i++) a[i] = 1;
-        for(int i=zeros+ones;i<zeros+ones+twos;i++) a[i] = 2;
+        for(int i=0;i<zeroes;i++) a[i] = 0;
+        for(int i=zeroes;i<zeroes+ones;i++) a[i] = 1;
+        for(int i=zeroes+ones;i<zeroes+ones+twos;i++) a[i] = 2;
     }
     
 };
