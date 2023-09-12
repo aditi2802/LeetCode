@@ -20,7 +20,7 @@ class Solution
     	    if(A[i]<mini) mini = A[i];
     	    if(A[i]>maxi) maxi = A[i];
     	}
-    	return mini + maxi;
+    	return mini+maxi;
     }
 
 };
