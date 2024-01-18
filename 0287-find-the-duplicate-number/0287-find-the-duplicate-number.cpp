@@ -10,15 +10,35 @@ public:
         // }
         // return ans;
         
-        //Approach2 optimal, tc:o(n), sc: o(n)
-        int ans;
-        int n = nums.size();
-        vector<int> freq(n+1,0);
+//         //Approach2 optimal, tc:o(n), sc: o(n)
+//         int ans;
+//         int n = nums.size();
+//         vector<int> freq(n+1,0);
         
-        for(int i=0;i<n;i++){
-            if(freq[nums[i]]==0) freq[nums[i]]++;
-            else return nums[i];
+//         for(int i=0;i<n;i++){
+//             if(freq[nums[i]]==0) freq[nums[i]]++;
+//             else return nums[i];
+//         }
+//         return 0;
+        
+        //Approach3 best tc:o(n), sc:o(1)
+        int slow = nums[0];
+        int fast = nums[0];
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }while(slow!=fast);
+            
+        fast = nums[0];
+        // do{
+        //     slow = nums[slow];
+        //     fast = nums[fast];
+        // }while(slow!=fast);
+        while(slow!=fast){
+            slow = nums[slow];
+            fast = nums[fast];
         }
-        return 0;
+        
+        return slow;
     }
 };
